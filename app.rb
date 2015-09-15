@@ -27,7 +27,7 @@ def get_times(departures, now)
     details = get_route_details(departure)
     line = details[:line]
     direction = details[:direction]
-    unless times[line][direction]
+    if times[line] && !times[line][direction]
       times[line][direction] = (Time.parse(details[:time]) - Time.parse(now)).to_i
     end
   end
